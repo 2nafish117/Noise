@@ -24,6 +24,27 @@ typedef double				f64;
 namespace utl
 {
     const float INF = ((float)(1e+300 * 1e+300));
+    const float SQRT_TWO = 1.41421356237;
+
+    float map_from01(float val, float to_min, float to_max)
+    {
+        return val * (to_max - to_min) + to_min;
+    }
+
+    float map(float val, float from_min, float from_max, float to_min, float to_max)
+    {
+        return (val - from_min) * (to_max - to_min) / (from_max - from_min) + to_min; 
+    }
+
+    float map_to01(float val, float from_min, float from_max)
+    {
+        return (val - from_min) / (from_max - from_min);
+    }
+
+    float float_remainder(float num, float base)
+    {
+        return num - base * (int)(num / base);
+    }
 
 	inline float lerpf(float v1, float v2, float t)
 	{
