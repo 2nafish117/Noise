@@ -11,19 +11,6 @@ static bool _has_init   = false;
 inline u32 perlin_width()   { return _grid_width;   }
 inline u32 perlin_height()  { return _grid_height;  }
 
-static void _generate_gradients()
-{
-    _gradients = (vec2*) malloc(_grid_width * _grid_height * sizeof(vec2));
-    for(u32 y = 0;y < _grid_height;++y)
-    {
-        for(u32 x = 0;x < _grid_width;++x)
-        {
-            _gradients[y * _grid_width + x] = { utl::randf(-1, 1), utl::randf(-1, 1) };
-            normalize(&_gradients[y * _grid_width + x]);
-        }
-    }
-}
-
 void perlin_init(u32 grid_width = 50, u32 grid_height = 50, u32 seed = 0)
 {
     assert(!_has_init && "[perlin_init] perlin_init() called twice without calling perlin_cleanup()");
@@ -39,6 +26,19 @@ void perlin_cleanup()
     free((void*) _gradients);
     _has_init = false;
     _grid_width = _grid_height = 0;
+}
+
+static void _generate_gradients()
+{
+    _gradients = (vec2*) malloc(_grid_width * _grid_height * sizeof(vec2));
+    for(u32 y = 0;y < _grid_height;++y)
+    {
+        for(u32 x = 0;x < _grid_width;++x)
+        {
+            _gradients[y * _grid_width + x] = { utl::randf(-1, 1), utl::randf(-1, 1) };
+            normalize(&_gradients[y * _grid_width + x]);
+        }
+    }
 }
 
 static float _displ_dot_gradient(int ix, int iy, float x, float y)
