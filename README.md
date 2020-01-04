@@ -6,6 +6,6 @@ Noise using standard c rand() function<br>
 Noise using perlin<br>
 ![alt text](https://github.com/2nafish117/Noise/blob/master/images/perlin1.bmp)
 
-Noise using batter-perlin<br>
+Noise using better-perlin<br>
 ![alt text](https://github.com/2nafish117/Noise/blob/master/images/image2.bmp)
 
